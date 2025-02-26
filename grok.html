@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaSly - Your Business Solution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a00e0;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #4a00e0;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #4a00e0;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #8e2de2;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 5% 60px;
+            background: linear-gradient(135deg, #4a00e0, #8e2de2);
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            margin: 15px 0;
+            font-size: 22px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 5%;
+            background: #f8f9fa;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 36px;
+            color: #4a00e0;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card li {
+            margin: 10px 0;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 5%;
+            text-align: center;
+            background: linear-gradient(135deg, #4a00e0, #8e2de2);
+            color: #fff;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 5%;
+            background: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">SaaSly</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Supercharge Your Business Growth</h1>
+            <p>Streamline operations, boost productivity, and scale effortlessly with our all-in-one SaaS solution.</p>
+            <a href="#" class="btn btn-primary">Start Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Analytics Dashboard</h3>
+                <p>Get real-time insights with our intuitive analytics dashboard.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Team Collaboration</h3>
+                <p>Work seamlessly with your team in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Automation Tools</h3>
+                <p>Save time with powerful automation features.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$29/mo</div>
+                    <ul>
+                        <li>5 Users</li>
+                        <li>Basic Analytics</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Pro</h3>
+                    <div class="price">$79/mo</div>
+                    <ul>
+                        <li>20 Users</li>
+                        <li>Advanced Analytics</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$199/mo</div>
+                    <ul>
+                        <li>Unlimited Users</li>
+                        <li>Full Analytics Suite</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to Transform Your Business?</h2>
+        <a href="#" class="btn btn-primary">Try Free for 14 Days</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SaaSly. All rights reserved.</p>
+    </footer>
+</body>
+</html>

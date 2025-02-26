@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowSaaS - Streamline Your Workflow</title>
+    <style>
+        /* Root Variables & Reset */
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #0ea5e9;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --white: #ffffff;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Containers and Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+
+        .grid-4 {
+            grid-template-columns: 1fr;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        /* Components */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .pricing-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .pricing-header {
+            background-color: var(--white);
+            padding: 2rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .pricing-popular {
+            background-color: #4f46e510;
+            border: 2px solid var(--primary);
+        }
+
+        .pricing-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .pricing-duration {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        .pricing-body {
+            padding: 2rem;
+            flex-grow: 1;
+            background-color: var(--white);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .check-icon {
+            color: var(--success);
+        }
+
+        .testimonial {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .accordion {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.25rem;
+            background-color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion.active .accordion-content {
+            padding: 1.25rem;
+            max-height: 1000px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+        }
+
+        .nav-list {
+            display: none;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--white);
+            width: 80%;
+            max-width: 300px;
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: var(--transition);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-shape {
+            position: absolute;
+            top: -300px;
+            right: -300px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.2), rgba(14, 165, 233, 0.2));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 16/9;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image svg {
+            width: 80%;
+            height: auto;
+            opacity: 0.7;
+        }
+
+        .clients {
+            margin-top: 3rem;
+        }
+
+        .clients-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .clients-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .client-logo {
+            height: 30px;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        /* Features Section */
+        .features {
+            position: relative;
+        }
+
+        .features-shape {
+            position: absolute;
+            bottom: -300px;
+            left: -300px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(14, 165, 233, 0.1), rgba(79, 70, 229, 0.1));
+            z-index: -1;
+        }
+
+        /* CTA Section */
+        .cta {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-shape {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(14, 165, 233, 0.1));
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-title {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--white);
+            padding: 5rem 0 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-description {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .nav-list {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
+            }
+
+            .hero-content {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-icon">&#9733;</span>
+                    <span>FlowSaaS</span>
+                </a>
+                <ul class="nav-list">
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="#" class="btn btn-outline">Sign In</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="overlay"></div>
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">✕</button>
+        <ul class="mobile-nav-list">
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#pricing" class="nav-link">Pricing</a></li>
+            <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
+            <li><a href="#" class="btn btn-primary" style="margin-top: 1rem;">Get Started</a></li>
+            <li><a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Sign In</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-shape"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">Simplify Your <span class="text-gradient">Workflow</span> with FlowSaaS</h1>
+                    <p class="hero-description">Powerful, intuitive, and designed for modern teams. Boost productivity and streamline your processes with our all-in-one solution.</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary btn-lg">Get Started Free</a>
+                        <a href="#" class="btn btn-outline btn-lg">See Demo</a>
+                    </div>
+                    <div class="clients">
+                        <p class="clients-title">TRUSTED BY COMPANIES WORLDWIDE</p>
+                        <div class="clients-logos">
+                            <div class="client-logo">ACME Inc</div>
+                            <div class="client-logo">TechCorp</div>
+                            <div class="client-logo">Globex</div>
+                            <div class="client-logo">Initech</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="50" width="300" height="150" rx="8" fill="#fff" stroke="#4f46e5" stroke-width="2"/>
+                        <line x1="50" y1="80" x2="350" y2="80" stroke="#e2e8f0" stroke-width="2"/>
+                        <rect x="70" y="60" width="20" height="10" rx="2" fill="#4f46e5"/>
+                        <rect x="100" y="60" width="20" height="10" rx="2" fill="#4f46e5"/>
+                        <rect x="130" y="60" width="20" height="10" rx="2" fill="#4f46e5"/>
+                        <rect x="70" y="100" width="100" height="80" rx="4" fill="#4f46e530"/>
+                        <rect x="190" y="100" width="130" height="80" rx="4" fill="#4f46e520"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <div class="features-shape"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features for Your Business</h2>
+                <p class="section-description">Everything you need to manage your workflow efficiently and scale your business.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-icon">&#128202;</div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time insights into your business performance. Track metrics, analyze trends, and make data-driven decisions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128101;</div>
+                    <h3>Team Collaboration</h3>
+                    <p>Work together seamlessly with your team. Share files, assign tasks, and communicate effectively.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128273;</div>
+                    <h3>Advanced Security</h3>
+                    <p>Your data is protected with enterprise-grade security. Role-based access control and end-to-end encryption.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#9881;</div>
+                    <h3>Customization</h3>
+                    <p>Tailor the platform to your needs. Custom workflows, fields, and integrations with your existing tools.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128640;</div>
+                    <h3>Automation</h3>
+                    <p>Save time with automated workflows. Set up triggers and actions to streamline repetitive tasks.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128241;</div>
+                    <h3>Mobile Access</h3>
+                    <p>Access your dashboard anytime, anywhere. Native mobile apps for iOS and Android devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="grid grid-2 items-center">
+                <div>
+                    <h2>Why Choose <span class="text-gradient">FlowSaaS</span>?</h2>
+                    <p>FlowSaaS is built to help businesses streamline their operations, improve collaboration, and drive growth. Our platform combines powerful features with an intuitive interface, making it easy for teams of all sizes to get started quickly.</p>
+                    <p>We believe in continuous improvement and innovation. Our team works tirelessly to add new features, enhance performance, and ensure security, so you can focus on what matters most - growing your business.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="card">
+                    <div style="background-color: var(--light-gray); height: 300px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                        About Image Placeholder
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-description">Choose the plan that's right for your business. All plans include a 14-day free trial.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="pricing-price">$29<span class="pricing-duration">/month</span></div>
+                        <p>Perfect for small teams and startups.</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Up to 5 team members</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> 10GB storage</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Basic analytics</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Email support</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card pricing-popular">
+                    <div class="pricing-header">
+                        <span class="pricing-badge">Most Popular</span>
+                        <h3>Professional</h3>
+                        <div class="pricing-price">$79<span class="pricing-duration">/month</span></div>
+                        <p>Ideal for growing businesses.</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Up to 20 team members</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> 50GB storage</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Advanced analytics</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Priority support</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Custom workflows</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="pricing-price">$199<span class="pricing-duration">/month</span></div>
+                        <p>For large organizations with complex needs.</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Unlimited team members</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> 500GB storage</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Enterprise analytics</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> 24/7 dedicated support</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Advanced security</li>
+                            <li class="pricing-feature"><span class="check-icon">✓</span> Custom integrations</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <p>Need a custom plan? <a href="#" style="color: var(--primary); font-weight: 600;">Contact us</a> for a tailored solution.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-description">Don't just take our word for it. Here's what people are saying about FlowSaaS.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="testimonial">
+                    <p class="testimonial-content">"FlowSaaS has completely transformed how our team works. The automation features alone have saved us countless hours each week."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JD</div>
+                        <div>
+                            <h4>Jane Doe</h4>
+                            <p style="margin-bottom: 0;">CTO, TechStart</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-content">"I was skeptical at first, but after using FlowSaaS for just a month, I can't imagine running our business without it. Incredible product!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MS</div>
+                        <div>
+                            <h4>Mark Smith</h4>
+                            <p style="margin-bottom: 0;">Founder, GrowthLabs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-content">"The analytics dashboard gives us insights we never had before. We can now make data-driven decisions with confidence."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SJ</div>
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p style="margin-bottom: 0;">CMO, ScaleUp Inc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">Find answers to common questions about FlowSaaS.</p>
+            </div>
+            <div class="grid grid-2">
+                <div>
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>How does the 14-day trial work?</span>
+                            <span class="accordion-icon">⌄</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Our 14-day trial gives you full access to all features of your selected plan. No credit card required, and you can cancel anytime. At the end of the trial, you can choose to subscribe or your account will automatically downgrade to our free plan with limited features.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>Can I change plans later?</span>
+                            <span class="accordion-icon">⌄</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, you can upgrade, downgrade, or change your plan at any time. When upgrading, you'll be prorated for the remainder of your billing cycle. When downgrading, the new rate will apply at the next billing cycle.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>Is my data secure?</span>
+                            <span class="accordion-icon">⌄</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Absolutely. We use industry-standard encryption and security practices to protect your data. Our platform is hosted on secure servers with regular backups, and we comply with GDPR and other privacy regulations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>Do you offer discounts for nonprofits or educational institutions?</span>
+                            <span class="accordion-icon">⌄</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, we offer special pricing for qualified nonprofits, educational institutions, and startups. Please contact our sales team for more information.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>Can I integrate FlowSaaS with other tools?</span>
+                            <span class="accordion-icon">⌄</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, FlowSaaS integrates with popular tools like Slack, Google Workspace, Microsoft 365, Zapier, and many others. We also offer an API for custom integrations in our Professional and Enterprise plans.</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>What kind of support do you offer?</span>
+                            <span class="accordion-icon">⌄</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We offer email support for all plans, with priority support for Professional plans and 24/7 dedicated support for Enterprise customers. Our knowledge base and community forum are available to all users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-shape"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to streamline your workflow?</h2>
+                <p class="cta-description">Join thousands of satisfied customers who have transformed their business with FlowSaaS.</p>
+                <a href="#" class="btn btn-primary btn-lg">Start Your Free Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">&#9733;</span>
+                        <span>FlowSaaS</span>
+                    </a>
+                    <p class="footer-description">Simplify your workflow and boost productivity with our all-in-one business solution.</p>
+                    <div class="social-links" style="margin-top: 1.5rem;">
+                        <a href="#" class="social-link" aria-label="Twitter">T</a>
+                        <a href="#" class="social-link" aria-label="Facebook">F</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">L</a>
+                        <a href="#" class="social-link" aria-label="Instagram">I</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Product</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Features</a></li>
+                        <li class="footer-link"><a href="#">Integrations</a></li>
+                        <li class="footer-link"><a href="#">Pricing</a></li>
+                        <li class="footer-link"><a href="#">Roadmap</a></li>
+                        <li class="footer-link"><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Documentation</a></li>
+                        <li class="footer-link"><a href="#">Blog</a></li>
+                        <li class="footer-link"><a href="#">Community</a></li>
+                        <li class="footer-link"><a href="#">Support</a></li>
+                        <li class="footer-link"><a href="#">API Reference</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">About Us</a></li>
+                        <li class="footer-link"><a href="#">Careers</a></li>
+                        <li class="footer-link"><a href="#">Contact Us</a></li>
+                        <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                        <li class="footer-link"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 FlowSaaS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuCloseBtn = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-list a');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuCloseBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Accordion functionality
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(accordion => {
+            const header = accordion.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                accordion.classList.toggle('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
